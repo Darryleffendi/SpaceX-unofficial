@@ -1,0 +1,140 @@
+.main-root {
+    background-color: #0b0911;
+    width:100vw;
+    height:100vh;
+    overflow-x: none;
+}
+
+.parallax-container {
+    transition: 600ms;
+    transition-timing-function: ease-in-out;
+}
+
+.parallax-container::-webkit-scrollbar {
+    width: 0.4em;
+    background: #00000000;
+}
+
+.parallax-container::-webkit-scrollbar-thumb {
+    background: #57548aa2;;
+    border-radius: 20px;
+}
+
+.parallax {
+    width:100vw;
+    height:120vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.parallax-0 { background-image: url("../Images/Home/parallax0.png"); }
+.parallax-1 { background-image: url("../Images/Home/parallax1.png"); }
+.parallax-2 { background-image: url("../Images/Home/parallax2.png"); }
+.parallax-3 { background-image: url("../Images/Home/parallax3.png"); }
+.parallax-4 { background-image: url("../Images/Home/parallax4.png"); }
+.parallax-bg { background-image: url("../Images/Home/parallax4.png"); }
+/* .parallax-stars { background-image: url("../Home/stars.png"); } */
+
+.parallax-logo {
+    background-image: url("../Images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-inline: auto;
+    margin-top: 30vh;
+    width: 30vw;
+    min-width: 280px;
+    height: 40vh;
+}
+
+.parallax-outer {
+    height: 120vh;
+}
+
+.contents {
+    width: 100vw;
+    height: 720vh;
+    background-color: #0b0911;
+}
+
+#parallax-rocket {
+    margin-top:52vh;
+    background-image: url("../Images/Home/homerocket5.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 60vh;
+    width: 100vw;
+    background-position: center;
+}
+
+.seperator {
+    height: 160vh;
+    width: 100vw;
+}
+
+.content {
+    height:2.5vh;
+    width: 100vw;
+}
+
+.content-bottom {
+    height:25vh;
+    width: 100vw;
+}
+
+.contents-div {
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    display: none;
+}
+
+.company-div { background-image: url("../Images/Home/company.png"); }
+.company-details-div { background-image: url("../Images/Home/companydetails.jpg"); }
+.ceo-div { background-image: url("../Images/Home/ceo.jpg"); }
+.contactus-bg { background-image: url("../Images/Home/contactus.jpg"); }
+
+.home-header {
+    min-width: 350px;
+    width: 40vw;
+    height: 40vh;
+    margin-top: 58vh;
+    margin-left: 5vw;
+}
+
+.home-header h1 {
+    font-size: calc(35px + 1.7vw);
+    margin: 0;
+}
+
+.home-header h4 {
+    margin: 0;
+}
+
+.home-header p {
+    margin-top: 25px;
+}
+
+.contactus-header {
+    text-align: center;
+    width:30vw;
+    margin-left: 35vw;
+    margin-top:30vh;
+    position: fixed;
+    height:20vh;
+    opacity: 0%;
+    transition: 600ms;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-btn-group {
+    margin-top:25px;
+}
+
+.footer-btn-group a {
+    margin-inline: 8px;
+}
+
+.footer-btn-group a img {
+    width: 20px;
+}

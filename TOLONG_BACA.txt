@@ -1,0 +1,22 @@
+jika di homepage ada error
+	Failed to execute 'observe' on 'IntersectionObserver': parameter 1 is not of type 'Element'.
+mohon direfresh terus menerus hingga bisa.
+
+Kemungkinan eror ini dapat terjadi adalah karena API GraphQL memiliki delay dalam mengirim data, sehingga
+IntersectionObserver yang merekam ref react error karena element ref tersebut belum kerender.
+
+LIST OF LIBRARIES USED
+----------------------
+
+React Spring
+npm install @react-spring/parallax
+
+Apolllo Client
+npm install @apollo/client graphql
+
+Jquery
+npm install jquery
+
+Router
+npm install react-router-dom
+

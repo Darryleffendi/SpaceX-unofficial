@@ -1,0 +1,14 @@
+.card-inner {
+    margin-top: 60vh;
+    margin-left: 5vw;
+}
+
+.card-inner h3 {
+    margin: 0;
+    font-size: calc(40px + 2vw);
+}
+
+.card-inner p {
+    margin: 0;
+    font-size: calc(5px + 0.4w);
+}
