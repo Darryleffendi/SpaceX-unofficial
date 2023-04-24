@@ -72,13 +72,18 @@
     width: 100vw;
 }
 
+.seperator-top {
+    height: 100vh;
+    width: 100vw;
+}
+
 .content {
     height:2.5vh;
     width: 100vw;
 }
 
 .content-bottom {
-    height:25vh;
+    height:45vh;
     width: 100vw;
 }
 

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Rockets from './pages/Rockets';
 import Ships from './pages/Ships';
 import Launches from './pages/Launches';
+import { Navbar } from './components/Navbar';
 
 const client = new ApolloClient({
   uri: 'https://spacex-production.up.railway.app/',
@@ -24,6 +25,7 @@ function App() {
           <Route path='/Ships' element={<Ships />}></Route>
           <Route path='*' element={(<Home />)}></Route>
         </Routes>
+        <Navbar />
       </Router>
     </ApolloProvider>
   );

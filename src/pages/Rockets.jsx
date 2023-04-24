@@ -1,49 +1,44 @@
 import { useQuery } from "@apollo/client";
 import { Navbar } from "../components/Navbar";
 import { GET_ROCKETS } from "../lib/getRockets";
-import CardContent from "../components/CardContent.jsx";
-import img1 from "../assets/Images/Rockets/Falcon1.jpg";
-import img2 from "../assets/Images/Rockets/Falcon9.jpg";
-import img3 from "../assets/Images/Rockets/FalconHeavy.jpg";
-import img4 from "../assets/Images/Rockets/Starship.jpg";
-import "../assets/styles/Rockets.css";
+import Card from "../components/Card.jsx";
+import InternetError from "./errors/InternetError";
+import $ from "jquery";
+import { useState } from "react";
 
 const Rockets = () => {
 
     const { loading , error, data } = useQuery(GET_ROCKETS);
 
-    if(loading) return <h1>Loading</h1>
-    if(error) return <h1>Error</h1>
+    let rockets = [];
 
-    let Falcon1 = img1;
-    let Falcon9 = img2;
-    let FalconHeavy = img3;
-    let Starship = img4;
-    
+    // Reverse Order (from latest to oldest)
+    if(!loading && !error) {
+        for(let i = data.rockets.length - 1, idx = 0; i >= 0 ; i --, idx ++) {
+            rockets[idx] = data.rockets[i];
+        }
+    }
 
     return (
-        <div>
-
+        <>
             {
-                data.rockets.map((rocket) => {
+                (loading) ? <div></div> : ((error) ? <InternetError /> :
+                
+                rockets.map((rocket) => {
                     let title = rocket.name;
                     let content = rocket.company + "'s ";
-                    let image = "../assets/Images/Rockets/" + rocket.id + ".jpg"
+                    let image = "/assets/Images/Rockets/" + rocket.id + ".jpg"
 
                     if(rocket.active) content += "active aircraft";
                     else content += "inactive aircraft";
 
                     return (
-                        <div className="card" style={{backgroundImage:`url(${eval(title.replace(/\s/g, ''))})` }}>
-                            <CardContent title={title.toUpperCase()} content={content.toUpperCase()} id={rocket.id} image={image}/>
-                        </div>                    
+                        <Card title={title.toUpperCase()} content={content.toUpperCase()} id={rocket.id} image={image}/>
                     )
 
                 })
-            }
-
-            <Navbar />
-        </div>
+            )}
+        </>
     );
 }
 

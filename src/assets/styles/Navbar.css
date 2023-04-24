@@ -57,3 +57,23 @@
 .nav-btn2 img {
     width: 21px;
 }
+
+.nav-mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 480px)  {
+    .nav-desktop {
+        display: none;
+    }
+    
+    .nav-mobile {
+        display: block;
+    }
+
+    .navbar {
+        justify-content: center;
+        padding: 0;
+        height: 60px;
+    }
+}

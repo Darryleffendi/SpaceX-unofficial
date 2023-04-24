@@ -12,6 +12,7 @@ import {GET_COMPANY_INFO} from '../lib/getCompanyInfo.jsx';
 import { ContactUs } from '../components/Home/ContactUs';
 import { ContactUsBtn } from '../components/Home/ContactUsBtn.jsx';
 import { useState } from 'react';
+import InternetError from './errors/InternetError';
 
 export default function Home() {
 
@@ -138,7 +139,7 @@ export default function Home() {
         <div className='main-root' onLoad={handleLoad}>
             
             {
-                (loading) ? (<div></div>) : ((error) ? (<div></div>) : (
+                (loading) ? <div></div> : ((error) ? <InternetError /> : (
                     <div>
                         <ContactUs />
                         <Company data={data}/>
@@ -180,7 +181,7 @@ export default function Home() {
                     <div className="parallax parallax-0" ref={parallaxRef}></div>
                     <div className="contents">
 
-                        <div className="seperator"></div>
+                        <div className="seperator-top"></div>
                         <div className="content" ref={content1Ref}></div>
                         <div className="seperator"></div>
                         <div className="content" ref={content2Ref}></div>
@@ -192,9 +193,7 @@ export default function Home() {
                 </ParallaxLayer>                
             </Parallax>
             
-            <ContactUsBtn />
-            <Navbar />
-            
+            <ContactUsBtn />            
         </div>
     )
 }
