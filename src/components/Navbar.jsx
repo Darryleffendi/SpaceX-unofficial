@@ -1,32 +1,30 @@
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/Navbar.css';
 import logo from '../assets/Images/logo2.png';
 import bookmark from '../assets/Images/bookmark.png';
 import search from '../assets/Images/search.png';
-import hamburger from '../assets/Images/hamburger.png';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import $ from 'jquery';
 
-export const Navbar = () => {
+export const Navbar = ({ children }) => {
 
     const navigate = useNavigate();
+    $('.navbar').css('background-color', '#00000000')
 
     return (
     <>
         <div className="navbar">
             <button onClick={() => navigate('/Home')}>
-                <img src={logo} className="nav-logo"/>
+                <img alt='btn' src={logo} className="nav-logo"/>
             </button>
             
-            <a className='nav-btn nav-desktop' onClick={() => navigate('/Rockets')}>ROCKETS</a>
-            <a className='nav-btn nav-desktop' onClick={() => navigate('/Launches')}>LAUNCHES</a>
-            <a className='nav-btn nav-desktop' onClick={() => navigate('/Ships')}>SHIPS</a>
+            <button className='nav-btn nav-desktop' onClick={() => navigate('/Rockets')}>ROCKETS</button>
+            <button className='nav-btn nav-desktop' onClick={() => navigate('/Launches')}>LAUNCHES</button>
+            <button className='nav-btn nav-desktop' onClick={() => navigate('/Bookmarks')}>BOOKMARKS</button>
 
             <div className='nav-right nav-desktop'>
-                <button className="nav-btn2 " >
-                    <img src={bookmark} />
-                </button>
+                { children }
                 <button className="nav-btn2" >
-                    <img src={search} />
+                    <img alt='btn' src={search} />
                 </button>
             </div>
 

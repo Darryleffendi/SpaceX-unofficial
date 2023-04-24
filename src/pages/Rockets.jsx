@@ -1,44 +1,47 @@
 import { useQuery } from "@apollo/client";
-import { Navbar } from "../components/Navbar";
 import { GET_ROCKETS } from "../lib/getRockets";
 import Card from "../components/Card.jsx";
-import InternetError from "./errors/InternetError";
-import $ from "jquery";
-import { useState } from "react";
+import InternetError from "./errors/Error400";
+import { useContext } from "react";
+import { ThemeContext } from "../App";
+import bg from "../assets/Images/Pages/rockets.jpg";
+import "../assets/styles/Page.css"
+import RocketCards from "../components/Cards/RocketCards";
+import { useNavigate } from "react-router-dom";
 
 const Rockets = () => {
 
     const { loading , error, data } = useQuery(GET_ROCKETS);
-
-    let rockets = [];
-
-    // Reverse Order (from latest to oldest)
-    if(!loading && !error) {
-        for(let i = data.rockets.length - 1, idx = 0; i >= 0 ; i --, idx ++) {
-            rockets[idx] = data.rockets[i];
-        }
-    }
+    const compactTheme = useContext(ThemeContext);
+    const navigate = useNavigate();
 
     return (
-        <>
-            {
-                (loading) ? <div></div> : ((error) ? <InternetError /> :
-                
-                rockets.map((rocket) => {
-                    let title = rocket.name;
-                    let content = rocket.company + "'s ";
-                    let image = "/assets/Images/Rockets/" + rocket.id + ".jpg"
+    <>
+        {
+            (loading) ? <div></div> : ((error) ? (() => navigate('/400badrequest')) :
+            
+            (compactTheme) ? (
+                // Compact mode
+                <>
+                <div className="compact-header" style={{backgroundImage: `url(${bg})`}}>
+                    <h1 className="font-main">ROCKETS</h1>
+                </div>
 
-                    if(rocket.active) content += "active aircraft";
-                    else content += "inactive aircraft";
+                <div style={{width:"100vw", height:"100vh"}}></div>
 
-                    return (
-                        <Card title={title.toUpperCase()} content={content.toUpperCase()} id={rocket.id} image={image}/>
-                    )
-
-                })
-            )}
-        </>
+                <div className="fullscreen bg-default no-overflow">
+                    <div className="content-scroll">
+                        <div className="page-content">
+                            <RocketCards data={data}/>
+                        </div>
+                    </div>
+                </div>
+                </>
+            ) : (
+                <RocketCards data={data}/>
+            )
+        )}
+    </>
     );
 }
 

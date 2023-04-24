@@ -1,8 +1,7 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import '../assets/styles/Home.css';
-import { Navbar } from '../components/Navbar';
 import $ from 'jquery';
 import { Company } from '../components/Home/Company';
 import { CompanyDetails } from '../components/Home/CompanyDetails';
@@ -11,14 +10,13 @@ import { useQuery } from '@apollo/client';
 import {GET_COMPANY_INFO} from '../lib/getCompanyInfo.jsx';
 import { ContactUs } from '../components/Home/ContactUs';
 import { ContactUsBtn } from '../components/Home/ContactUsBtn.jsx';
-import { useState } from 'react';
-import InternetError from './errors/InternetError';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
 
     const { loading, error, data } = useQuery(GET_COMPANY_INFO);
-
     const [loaded, setLoaded] = useState(false);
+    const navigate = useNavigate();
     
     const parallaxRef = useRef();
     const content1Ref = useRef();
@@ -29,117 +27,93 @@ export default function Home() {
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));  
     };  
-
-    function handleLoad() {
+    
+    function handleOnLoad() {
         if(!loaded) setLoaded(true);
     }
-    
-    useEffect(() => {
-        if(loaded) {
-            const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    $('.navbar').css('opacity', '0%');
-                    $('.navbar').css('margin-top', '-40px');
-                } else {
-                    $('.navbar').css('opacity', '100%');
-                    $('.navbar').css('margin-top', '0');
-                }
-            })
-        
-            observer.observe(parallaxRef.current);
-        }
-    }, [loaded]);
 
     useEffect(() => {
         if(loaded) {
             const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    $('.company-div').css('display', 'block');
-                    $('.parallax-container').css('opacity', '0%');
-                    $('.company-details-div').css('display', 'none');
-                } else {
-                    $('.parallax-container').css('opacity', '100%');
-                    sleep(600).then(() => {  
-                        $('.company-div').css('display', 'none');
-                    });  
+                for(let i = 0; i < entries.length; i ++) {
+                    // If intersect (entrance to screen)
+                    if(entries[i].isIntersecting) {
+                        if(entries[i].target === parallaxRef.current) {
+                            $('.navbar').css('opacity', '0%');
+                            $('.navbar').css('margin-top', '-40px');
+                        } else if(entries[i].target === content1Ref.current) {
+                            $('.company-div').css('display', 'block');
+                            $('.parallax-container').css('opacity', '0%');
+                            $('.company-details-div').css('display', 'none');
+                        } else if(entries[i].target === content2Ref.current) {
+                            $('.parallax-container').css('opacity', '0%');
+                            $('.company-details-div').css('display', 'block');
+                            $('.company-div').css('display', 'none');
+                            $('.ceo-div').css('display', 'none');
+                        } else if(entries[i].target === content3Ref.current) {
+                            $('.parallax-container').css('opacity', '0%');
+                            $('.ceo-div').css('display', 'block');
+                            $('.company-details-div').css('display', 'none');
+                        } else if(entries[i].target === content4Ref.current) {
+                            $('.parallax-container').css('opacity', '0%');
+                            $('.contactus-div').css('display', 'block');
+                            $('.ceo-div').css('display', 'none');
+                            $('.navbar').css('opacity', '0%');
+                            $('.navbar').css('margin-top', '-40px');
+                            sleep(10).then(() => {  
+                                $('.contactus-header').css('opacity', '100%');
+                            });  
+                        }   
+                    // If not intersect (Exit from screen)
+                    } else {
+                        if(entries[i].target === parallaxRef.current) {
+                            $('.navbar').css('opacity', '100%');
+                            $('.navbar').css('margin-top', '0');
+                        } else if(entries[i].target === content1Ref.current) {
+                            $('.parallax-container').css('opacity', '100%');
+                            sleep(600).then(() => {  
+                                $('.company-div').css('display', 'none');
+                            });  
+                        } else if(entries[i].target === content2Ref.current) {
+                            $('.parallax-container').css('opacity', '100%');
+                            sleep(600).then(() => {  
+                                $('.company-details-div').css('display', 'none');
+                            });  
+                        } else if(entries[i].target === content3Ref.current) {
+                            $('.parallax-container').css('opacity', '100%');
+                            sleep(600).then(() => {  
+                                $('.ceo-div').css('display', 'none');
+                            });  
+                        } else if(entries[i].target === content4Ref.current) {
+                            $('.parallax-container').css('opacity', '100%');
+                            $('.contactus-header').css('opacity', '0%');
+                            $('.navbar').css('opacity', '100%');
+                            $('.navbar').css('margin-top', '0');
+                            sleep(600).then(() => {  
+                                $('.contactus-div').css('display', 'none');
+                            });  
+                        }   
+                    }
                 }
             })
             
-            observer.observe(content1Ref.current);            
+            try {
+                observer.observe(parallaxRef.current);
+                observer.observe(content1Ref.current);            
+                observer.observe(content2Ref.current);
+                observer.observe(content3Ref.current);
+                observer.observe(content4Ref.current);
+            } catch(error) {
+                console.log(error);
+            }
         }
-    }, [loaded]);
-
-    useEffect(() => {
-        if(loaded) {
-            const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    $('.parallax-container').css('opacity', '0%');
-                    $('.company-details-div').css('display', 'block');
-                    $('.company-div').css('display', 'none');
-                    $('.ceo-div').css('display', 'none');
-                } else {
-                    $('.parallax-container').css('opacity', '100%');
-                    sleep(600).then(() => {  
-                        $('.company-details-div').css('display', 'none');
-                    });  
-                }
-            })
-
-            observer.observe(content2Ref.current);
-        }
-    }, [loaded]);
-
-    useEffect(() => {
-        if(loaded) {
-            const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    $('.parallax-container').css('opacity', '0%');
-                    $('.ceo-div').css('display', 'block');
-                    $('.company-details-div').css('display', 'none');
-                } else {
-                    $('.parallax-container').css('opacity', '100%');
-                    sleep(600).then(() => {  
-                        $('.ceo-div').css('display', 'none');
-                    });  
-                }
-            })
-
-            observer.observe(content3Ref.current);
-        }
-    }, [loaded]);
-
-    useEffect(() => {
-        if(loaded) {
-            const observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    $('.parallax-container').css('opacity', '0%');
-                    $('.contactus-div').css('display', 'block');
-                    $('.ceo-div').css('display', 'none');
-                    $('.navbar').css('opacity', '0%');
-                    $('.navbar').css('margin-top', '-40px');
-                    sleep(10).then(() => {  
-                        $('.contactus-header').css('opacity', '100%');
-                    });  
-                } else {
-                    $('.parallax-container').css('opacity', '100%');
-                    $('.contactus-header').css('opacity', '0%');
-                    $('.navbar').css('opacity', '100%');
-                    $('.navbar').css('margin-top', '0');
-                    sleep(600).then(() => {  
-                        $('.contactus-div').css('display', 'none');
-                    });  
-                }
-            })
-
-            observer.observe(content4Ref.current);
-        }
-    }, [loaded]);
+    }, [loaded, loading, error, data]);
 
     return (
-        <div className='main-root' onLoad={handleLoad}>
+        <div className='main-root' onLoad={() => handleOnLoad()}>
             
             {
-                (loading) ? <div></div> : ((error) ? <InternetError /> : (
+                (loading) ? <div></div> : ((error) ? (() => navigate('/400badrequest')) : (
                     <div>
                         <ContactUs />
                         <Company data={data}/>

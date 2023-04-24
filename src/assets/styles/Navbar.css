@@ -6,7 +6,7 @@
     top:0;
     padding-inline: calc(5px + 5.4vw);
     padding-top: calc(15px + 1.8vh);
-    transition: 400ms;
+    transition: 500ms;
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-wrap: nowrap;

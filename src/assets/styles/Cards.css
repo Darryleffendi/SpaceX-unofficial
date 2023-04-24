@@ -1,6 +1,6 @@
-@media only screen and (min-width: 480px)  {
+@media only screen and (max-width: 480px)  {
     .card {
-        background-position-y: bottom;
+        background-position-y: center;
     }
 }
 
@@ -12,6 +12,7 @@
     background-size: cover;
     overflow: hidden;
     background-position-x: center;
+    background-position-y: bottom;
 }
 
 .card-inner {
@@ -49,4 +50,19 @@
 .card-btn:hover {
     color:rgb(28, 28, 28);
     background-position: left bottom;
+}
+
+/* ======== Mini card ======== */
+
+.mini-card {
+    width: 25vw;
+    height: 100%;
+    margin-right: 45px;
+    flex-shrink: 0;
+}
+
+.mini-card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
 }

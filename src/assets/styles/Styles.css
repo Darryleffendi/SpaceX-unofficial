@@ -22,3 +22,11 @@
     font-family: DIN-regular;
     color: white;
 }
+
+.bg-default {
+    background-color: #0b0911;
+}
+
+.no-overflow {
+    overflow: hidden;
+}

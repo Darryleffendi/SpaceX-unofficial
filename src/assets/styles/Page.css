@@ -1,0 +1,96 @@
+/* ======= Compact Page Styling ======= */
+
+.compact-header {
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-position-y: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: calc(2.3vw + 14px);
+    z-index: -10;
+    position: fixed;
+}
+
+.page-content {
+    width: 85vw;
+    height: 65vh;
+    display: flex;
+    flex-wrap: nowrap;
+    transform: rotateX(180deg);
+}
+
+.content-scroll {
+    margin-top: 20vh;
+    margin-left: 7.5vw;
+    width: 85vw;
+    height: 65vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    transform: rotateX(180deg);
+}
+
+.content-scroll::-webkit-scrollbar {
+    height: 0.45em;
+    width: 0.45em;
+    background: #00000000;
+}
+
+.content-scroll::-webkit-scrollbar-thumb {
+    background: #5b5b5b46;
+    border-radius: 20px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb:hover {
+    background: #5b5b5b97;
+    border-radius: 20px;
+}
+
+.content-h {
+    margin-left: 7.5vw;
+    margin-bottom: -14vh;
+    margin-top: 18vh;
+}
+
+
+@media only screen and (max-width: 480px)  {
+    .page-content {
+        width: 85vw;
+        height: 65vh;
+        display: flex;
+        flex-wrap: wrap;
+        transform: rotateX(0deg);
+    }
+    
+    .content-scroll {
+        margin-top: 20vh;
+        margin-left: 7.5vw;
+        width: 85vw;
+        height: 65vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transform: rotateX(0deg);
+    }
+
+    .mini-card {
+        width: 100%;
+        height: 58vh;
+        margin-bottom: 40px;
+    }
+    
+    .mini-card img {
+        width: 100%;
+        height: 60%;
+        object-fit: cover;
+    }
+
+    .content-scroll::-webkit-scrollbar {
+        width:0;
+        height: 0;
+    }
+}

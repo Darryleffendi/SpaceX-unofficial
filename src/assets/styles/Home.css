@@ -143,3 +143,9 @@
 .footer-btn-group a img {
     width: 20px;
 }
+
+@media only screen and (max-width: 480px)  {
+    .home-header {
+        margin-top: 54vh;
+    }
+}
