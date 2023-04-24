@@ -2,10 +2,10 @@ import { useQuery } from "@apollo/client";
 import { Navbar } from "../components/Navbar";
 import { GET_ROCKETS } from "../lib/getRockets";
 import CardContent from "../components/CardContent.jsx";
-import img1 from "../assets/Images/Rockets/5e9d0d95eda69955f709d1eb.jpg";
-import img2 from "../assets/Images/Rockets/5e9d0d95eda69973a809d1ec.jpg";
-import img3 from "../assets/Images/Rockets/5e9d0d95eda69974db09d1ed.jpg";
-import img4 from "../assets/Images/Rockets/5e9d0d96eda699382d09d1ee.jpg";
+import img1 from "../assets/Images/Rockets/Falcon1.jpg";
+import img2 from "../assets/Images/Rockets/Falcon9.jpg";
+import img3 from "../assets/Images/Rockets/FalconHeavy.jpg";
+import img4 from "../assets/Images/Rockets/Starship.jpg";
 import "../assets/styles/Rockets.css";
 
 const Rockets = () => {
