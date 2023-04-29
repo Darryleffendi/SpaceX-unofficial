@@ -8,6 +8,7 @@ import $ from 'jquery'
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import LoadingPage from "../components/LoadingPage";
+import Fade from 'react-reveal/Fade';
 
 const Launches = () => {
 
@@ -43,9 +44,11 @@ const Launches = () => {
                 (compactTheme) ? (
                     // Compact mode
                     <>
-                    <div className="compact-header" style={{backgroundImage: `url(${bg})`, backgroundPositionY: "center"}}>
-                        <h1 className="font-main">LAUNCHES</h1>
-                    </div>
+                    <Fade>
+                        <div className="compact-header" style={{backgroundImage: `url(${bg})`, backgroundPositionY: "center"}}>
+                            <h1 className="font-main">LAUNCHES</h1>
+                        </div>
+                    </Fade>
 
                     <div style={{width:"100vw", height:"100vh"}}></div>
 

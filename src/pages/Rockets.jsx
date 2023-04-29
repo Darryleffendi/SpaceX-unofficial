@@ -8,6 +8,7 @@ import RocketCards from "../components/Cards/RocketCards";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import LoadingPage from "../components/LoadingPage";
+import Fade from 'react-reveal/Fade';
 
 const Rockets = () => {
 
@@ -23,9 +24,11 @@ const Rockets = () => {
             (compactTheme) ? (
                 // Compact mode
                 <>
-                <div className="compact-header" style={{backgroundImage: `url(${bg})`}}>
-                    <h1 className="font-main">ROCKETS</h1>
-                </div>
+                <Fade>
+                    <div className="compact-header" style={{backgroundImage: `url(${bg})`}}>
+                        <h1 className="font-main">ROCKETS</h1>
+                    </div>
+                </Fade>
 
                 <div className="fullscreen"></div>
 

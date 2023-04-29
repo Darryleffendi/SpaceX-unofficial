@@ -13,6 +13,7 @@ import { ContactUsBtn } from '../components/Home/ContactUsBtn.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoadingPage from '../components/LoadingPage';
+import Fade from 'react-reveal/Fade';
 
 export default function Home() {
 
@@ -112,6 +113,7 @@ export default function Home() {
     }, [loaded, loading, error, data]);
 
     return (
+        <Fade>
         <div className='main-root' onLoad={() => handleLoad()}>
             
             {
@@ -171,5 +173,6 @@ export default function Home() {
             
             <ContactUsBtn />            
         </div>
+        </Fade>
     )
 }

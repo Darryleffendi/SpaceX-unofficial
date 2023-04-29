@@ -5,6 +5,7 @@ import { ThemeContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import "../../assets/styles/Page.css"
 import nomedia from '../../assets/Images/Pages/nomedia.jpg'
+import Fade from 'react-reveal/Fade';
 
 // Memoization to improve performance
 

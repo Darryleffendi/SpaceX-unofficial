@@ -15,6 +15,7 @@ import checkBookmark from "../lib/functions/checkBookmark";
 import addBookmark from "../lib/functions/addBookmark";
 import removeBookmark from "../lib/functions/removeBookmark";
 import LoadingPage from "../components/LoadingPage";
+import Fade from 'react-reveal/Fade';
 
 const RocketDetails = () => {
     const { id } = useParams();
@@ -59,13 +60,14 @@ const RocketDetails = () => {
     {
         (loading) ? <LoadingPage /> : ((error) ? (() => navigate('/Error/400badrequest')) : 
         ( <>
-
-            <div className="compact-header" style={{backgroundImage: `url("/assets/Images/Rockets/${id}_2.jpg")`}}>
-                <div className="header-inner">
-                    <h1 className="font-main m-0">{data.rocket.name.toUpperCase()}</h1>
-                    <p className="font-p">{extraData.desc}</p>
+            <Fade>
+                <div className="compact-header" style={{backgroundImage: `url("/assets/Images/Rockets/${id}_2.jpg")`}}>
+                    <div className="header-inner">
+                        <h1 className="font-main m-0">{data.rocket.name.toUpperCase()}</h1>
+                        <p className="font-p">{extraData.desc}</p>
+                    </div>
                 </div>
-            </div>
+            </Fade>
 
             <Parallax pages={8} className='custom-scroll'>
                 

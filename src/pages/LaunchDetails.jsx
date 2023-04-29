@@ -12,6 +12,7 @@ import bookmarkImg from "../assets/Images/bookmark.png";
 import bookmarkedImg from "../assets/Images/bookmarked.png";
 import '../assets/styles/Page.css'
 import LoadingPage from "../components/LoadingPage";
+import Fade from 'react-reveal/Fade';
 
 const LaunchDetails = () => {
     const { id } = useParams();
@@ -53,9 +54,11 @@ const LaunchDetails = () => {
     {
         (loading) ? <LoadingPage />: ((error) ? (() => navigate('/Error/400badrequest')) : 
         ( <>
-            <div className="compact-header fullscreen no-overflow flex center" style={{backgroundImage:`url(${bg})`}}>
-                <h1 className="font-main">{data.launch.mission_name.toUpperCase()}</h1>
-            </div>
+            <Fade>
+                <div className="compact-header fullscreen no-overflow flex center" style={{backgroundImage:`url(${bg})`}}>
+                    <h1 className="font-main">{data.launch.mission_name.toUpperCase()}</h1>
+                </div>
+            </Fade>
 
             <div className="fullscreen">
                 <button className="bookmark-btn font-main fs-xs" onClick={() => handleBookmark()}>
