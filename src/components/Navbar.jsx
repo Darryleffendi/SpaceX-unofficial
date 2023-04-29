@@ -52,19 +52,41 @@ export const Navbar = ({ children }) => {
         
         <div className='nav-bottom nav-mobile'>
             <div className='bottom-flex'>
-                <button className='nav-bottom-btn'>
-                    <img src={launch} alt='btn' onClick={() => navigate('/Launches')}/><p className='font-p'>LAUNCHES</p>
+                <button className='nav-bottom-btn' onClick={() => {
+                    navigate('/Launches');
+                    $('.navbar').css('opacity', '100%');
+                    $('.navbar').css('margin-top', '0');
+                }}>
+                    <img src={launch} alt='btn' />
+                    <p className='font-p'>LAUNCHES</p>
                 </button>
-                <button className='nav-bottom-btn'>
-                    <img src={rocket} alt='btn' onClick={() => navigate('/Rockets')}/><p className='font-p'>ROCKETS</p>
+                <button className='nav-bottom-btn' onClick={() => {
+                    navigate('/Rockets');
+                    $('.navbar').css('opacity', '100%');
+                    $('.navbar').css('margin-top', '0');
+                }}>
+                    <img src={rocket} alt='btn' />
+                    <p className='font-p'>ROCKETS</p>
                 </button>
-                <button className='nav-bottom-main' onClick={() => navigate('/Home')}>
+                <button className='nav-bottom-main' onClick={() => {
+                    navigate('/Home');
+                    $('.navbar').css('opacity', '100%');
+                    $('.navbar').css('margin-top', '0');
+                }}>
                     <img src={logonav} alt='btn' />
                 </button>
-                <button className='nav-bottom-btn'>
-                    <img src={bookmark} alt='btn' onClick={() => navigate('/Bookmarks')}/><p className='font-p'>BOOKMARK</p>
+                <button className='nav-bottom-btn' onClick={() => {
+                    navigate('/Bookmarks');
+                    $('.navbar').css('opacity', '100%');
+                    $('.navbar').css('margin-top', '0');
+                }}>
+                    <img src={bookmark} alt='btn' /><p className='font-p'>BOOKMARK</p>
                 </button>
-                <button className='nav-bottom-btn' onClick={() => setSearchClick(!searchClick)}>
+                <button className='nav-bottom-btn' onClick={() => {
+                    setSearchClick(!searchClick)
+                    $('.navbar').css('opacity', '100%');
+                    $('.navbar').css('margin-top', '0');
+                }}>
                     <img src={searchImg} alt='btn' /><p className='font-p'>SEARCH</p>
                 </button>
             </div>

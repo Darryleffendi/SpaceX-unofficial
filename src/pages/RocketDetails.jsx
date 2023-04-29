@@ -70,20 +70,17 @@ const RocketDetails = () => {
             </Fade>
 
             <Parallax pages={8} className='custom-scroll'>
-                
-                <ParallaxLayer>
-                    <div className="fullscreen">
-                        <button className="bookmark-btn font-main fs-xs" onClick={() => handleBookmark()}>
-                            {
-                                (bookmarked) ? <>
-                                    <p>BOOKMARKED</p> <img src={bookmarkedImg} />
-                                </> : <>
-                                    <p>BOOKMARK</p> <img src={bookmarkImg} />
-                                </>
-                            }
-                        </button>
-                    </div>
-                </ParallaxLayer>
+                <div className="fullscreen">
+                    <button className="bookmark-btn font-main fs-xs" onClick={() => handleBookmark()}>
+                        {
+                            (bookmarked) ? <>
+                                <p>BOOKMARKED</p> <img src={bookmarkedImg} />
+                            </> : <>
+                                <p>BOOKMARK</p> <img src={bookmarkImg} />
+                            </>
+                        }
+                    </button>
+                </div>
 
                 <ParallaxLayer offset={1}>
                         <div style={{height:'40vh', justifyContent:'space-around'}} className='w-100 bg-black flex'>
