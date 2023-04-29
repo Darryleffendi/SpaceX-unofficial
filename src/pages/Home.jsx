@@ -1,5 +1,5 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import '../assets/styles/Home.css';
 import $ from 'jquery';
@@ -8,14 +8,16 @@ import { CompanyDetails } from '../components/Home/CompanyDetails';
 import { Ceo } from '../components/Home/Ceo.jsx';
 import { useQuery } from '@apollo/client';
 import {GET_COMPANY_INFO} from '../lib/getCompanyInfo.jsx';
-import { ContactUs } from '../components/Home/ContactUs';
+import { ContactUs } from '../components/Home/ContactUs.jsx';
 import { ContactUsBtn } from '../components/Home/ContactUsBtn.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import LoadingPage from '../components/LoadingPage';
 
 export default function Home() {
 
     const { loading, error, data } = useQuery(GET_COMPANY_INFO);
-    const [loaded, setLoaded] = useState(false);
+    const [ loaded, setLoaded ] = useState(false);
     const navigate = useNavigate();
     
     const parallaxRef = useRef();
@@ -24,16 +26,16 @@ export default function Home() {
     const content3Ref = useRef();
     const content4Ref = useRef();
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));  
-    };  
-    
-    function handleOnLoad() {
-        if(!loaded) setLoaded(true);
+    const handleLoad = () => {
+        setLoaded(true);
     }
 
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));  
+    };  
+
     useEffect(() => {
-        if(loaded) {
+        if(data) {
             const observer = new IntersectionObserver((entries) => {
                 for(let i = 0; i < entries.length; i ++) {
                     // If intersect (entrance to screen)
@@ -56,12 +58,12 @@ export default function Home() {
                             $('.company-details-div').css('display', 'none');
                         } else if(entries[i].target === content4Ref.current) {
                             $('.parallax-container').css('opacity', '0%');
-                            $('.contactus-div').css('display', 'block');
+                            $('.contactus-div').css('display', 'flex');
                             $('.ceo-div').css('display', 'none');
                             $('.navbar').css('opacity', '0%');
                             $('.navbar').css('margin-top', '-40px');
-                            sleep(10).then(() => {  
-                                $('.contactus-header').css('opacity', '100%');
+                            sleep(30).then(() => {  
+                                $('.contactus-div').css('opacity', '100%');
                             });  
                         }   
                     // If not intersect (Exit from screen)
@@ -86,7 +88,7 @@ export default function Home() {
                             });  
                         } else if(entries[i].target === content4Ref.current) {
                             $('.parallax-container').css('opacity', '100%');
-                            $('.contactus-header').css('opacity', '0%');
+                            $('.contactus-btn').css('opacity', '0%');
                             $('.navbar').css('opacity', '100%');
                             $('.navbar').css('margin-top', '0');
                             sleep(600).then(() => {  
@@ -110,20 +112,20 @@ export default function Home() {
     }, [loaded, loading, error, data]);
 
     return (
-        <div className='main-root' onLoad={() => handleOnLoad()}>
+        <div className='main-root' onLoad={() => handleLoad()}>
             
             {
-                (loading) ? <div></div> : ((error) ? (() => navigate('/400badrequest')) : (
-                    <div>
+                (loading) ? <LoadingPage /> : ((error) ? (() => navigate('/Error/400badrequest')) : (
+                    <>
                         <ContactUs />
                         <Company data={data}/>
                         <CompanyDetails data={data}/>
                         <Ceo data={data}/>
-                    </div>
+                    </>
                 ))
             }
 
-            <Parallax pages={6} className="parallax-container">
+            <Parallax pages={6} className="parallax-container custom-scroll">
                 {/* Parallax Assets Source & Idea
                     https://www.firewatchgame.com/
                     Edited with Photoshop 

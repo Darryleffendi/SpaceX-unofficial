@@ -1,8 +1,9 @@
 import { memo, useContext } from "react";
-import Card from "../Card";
-import MiniCard from "../MiniCard";
+import Card from "./Card";
+import MiniCard from "./MiniCard";
 import { ThemeContext } from "../../App";
-import "../../assets/styles/Cards.css"
+import { useNavigate } from "react-router-dom";
+import "../../assets/styles/Page.css"
 import nomedia from '../../assets/Images/Pages/nomedia.jpg'
 
 // Memoization to improve performance
@@ -14,6 +15,7 @@ const LaunchCards = (data) => {
     let launchYearDOM = [];
 
     const compactTheme = useContext(ThemeContext);
+    const navigate = useNavigate();
     data = data.data;
 
     // Prioritize Launches with Images (For design purposes)
@@ -47,17 +49,24 @@ const LaunchCards = (data) => {
                 launchYearDOM.push(
                     <>
                     <h1 className="font-main content-h">{key}</h1>
-                    <div className="content-scroll">
-                        <div className="page-content">
+                    <div className="content-scroll no-responsive">
+                        <div className="page-content no-responsive">
                             {
-                                launchYears[key].map((launch) => {
+                                launchYears[key].map((launch, key) => {
                                     let title = launch.mission_name;
                                     let content = launch.launch_date_local.slice(0, 10);
                                     let image = launch.links.flickr_images;
                                     if(image.length === 0) image = nomedia;
                                     
                                     return ( 
-                                        <MiniCard key={launch.id} title={title.toUpperCase()} content={content.toUpperCase()} image={image}/>
+                                        <MiniCard
+                                            key={key}
+                                            id={launch.id} 
+                                            title={title.toUpperCase()} 
+                                            content={content.toUpperCase()} 
+                                            image={image}
+                                            url={`/Launches/Details/${launch.id}`}
+                                        />
                                         ) 
                                     })
                                 }
@@ -79,24 +88,38 @@ const LaunchCards = (data) => {
                 })
             ) : ( <>
                 {
-                    launches.map((launch) => {
+                    launches.map((launch, key) => {
                         let title = launch.mission_name;
                         let content = launch.launch_date_local.slice(0, 10);
                         let image = launch.links.flickr_images;
                         
                         return ( 
-                            <Card key={launch.id} title={title.toUpperCase()} content={content.toUpperCase()} image={image}/>
+                            <Card
+                                key={key}
+                                id={launch.id} 
+                                title={title.toUpperCase()} 
+                                content={content.toUpperCase()} 
+                                image={image}
+                                url={`/Launches/Details/${launch.id}`}
+                            />
                         ) 
                     })
                 }
                 {
-                    launches2.map((launch) => {
+                    launches2.map((launch, key) => {
                         let title = launch.mission_name;
                         let content = launch.launch_date_local.slice(0, 10);
                         let image = nomedia;
                         
                         return ( 
-                            <Card key={launch.id} title={title.toUpperCase()} content={content.toUpperCase()} image={image}/>
+                            <Card 
+                                key={key}
+                                id={launch.id}
+                                title={title.toUpperCase()}
+                                content={content.toUpperCase()}
+                                image={image}
+                                url={`/Launches/Details/${launch.id}`}
+                            />
                         ) 
                     })
                 }

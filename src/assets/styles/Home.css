@@ -10,16 +10,6 @@
     transition-timing-function: ease-in-out;
 }
 
-.parallax-container::-webkit-scrollbar {
-    width: 0.4em;
-    background: #00000000;
-}
-
-.parallax-container::-webkit-scrollbar-thumb {
-    background: #57548aa2;;
-    border-radius: 20px;
-}
-
 .parallax {
     width:100vw;
     height:120vh;
@@ -34,7 +24,6 @@
 .parallax-3 { background-image: url("../Images/Home/parallax3.png"); }
 .parallax-4 { background-image: url("../Images/Home/parallax4.png"); }
 .parallax-bg { background-image: url("../Images/Home/parallax4.png"); }
-/* .parallax-stars { background-image: url("../Home/stars.png"); } */
 
 .parallax-logo {
     background-image: url("../Images/logo.png");
@@ -122,30 +111,88 @@
 
 .contactus-header {
     text-align: center;
-    width:30vw;
-    margin-left: 35vw;
-    margin-top:30vh;
     position: fixed;
-    height:20vh;
-    opacity: 0%;
     transition: 600ms;
     transition-timing-function: ease-in-out;
 }
 
-.footer-btn-group {
-    margin-top:25px;
+.contactus-header h1 {
+    font-size: calc(35px + 1.7vw);
+    margin: 0;
 }
 
-.footer-btn-group a {
-    margin-inline: 8px;
+.contactus-header h4 {
+    margin: 0;
 }
 
-.footer-btn-group a img {
-    width: 20px;
+.contactus-btn {
+    position: fixed;
+    display: none;
+}
+
+.contactus-btn {
+    transition: 600ms;
+    transition-timing-function: ease-in-out;
+    width: 8vw;
+    justify-content: space-between;
+    left: 46vw;
+    top: 50vh;
+}
+
+.contactus-btn a img {
+    width: 50%;
+}
+
+.contactus-div p {
+    position: absolute;
+    bottom: 2.5vh;
+}
+
+.footer-div {
+    margin-top:-1px;
+    width: 100vw;
+    height: 20vh;
+}
+
+.footer-content {
+    width: 80vw;
+    margin-left: 10vw;
+    margin-top: 12vh;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 @media only screen and (max-width: 480px)  {
     .home-header {
         margin-top: 54vh;
+    }
+
+    .mini-card {
+        width: 85vw;
+        height: 58vh;
+        margin-bottom: 40px;
+    }
+
+    .contactus-btn { 
+        width: 20vw;
+        left: 40vw;
+    }
+
+    .contactus-div p {
+        bottom: 9vh;
+    }
+
+    .footer-content {
+        width: 100vw;
+        margin-left: 0;
+        margin-top: 6vh;
+    }
+
+    .search-card img {
+        width:35%;
+    }
+
+    .search-card-content {
+        margin-left: 0%;
     }
 }

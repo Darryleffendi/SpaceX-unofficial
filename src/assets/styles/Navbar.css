@@ -13,11 +13,6 @@
     align-items: center;
 }
 
-.navbar button {
-    background: none;
-    border: none;
-}
-
 .nav-logo {
     width: calc(130px + 4.5vw);
 }
@@ -62,6 +57,150 @@
     display: none;
 }
 
+.mobile-context-btn {
+    position:fixed;
+    right: 5vw;
+    top:2.7vh;
+}
+
+/* ========= Searchbar ========= */
+
+.form button {
+    border: none;
+    background: none;
+    color: #8b8ba7;
+    display: inline;
+  } 
+  .form {
+    --timing: 0.3s;
+    --width-of-input: calc(150px + 20vw);
+    --height-of-input: 40px;
+    --border-height: 2px;
+    --input-bg: rgba(107, 107, 107, 0.285);
+    --border-color: #333368;
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--input-bg,#fff);
+  }
+  .input {
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    color: #8b8ba7;
+  }
+  .form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+  }
+  .form:focus-within {
+    border-radius: var(--after-border-radius);
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  .form:focus-within:before {
+    transform: scale(1);
+  }
+  .reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+  }
+  .form svg {
+    width: 17px;
+    margin-top: 3px;
+  }
+
+/* ======== Close Btn ======== */
+.close-container{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftright{
+  height: 3px;
+  width: 30px;
+  position: absolute;
+  background-color: #4b4b52;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 3px;
+  width: 30px;
+  position: absolute;
+  background-color: #4b4b52;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+.close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: #F25C66;
+}
+.close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: #F25C66;
+}
+.close-container:hover label{
+  opacity: 1;
+}
+
+/* ========= SEARCH DIV ======== */
+.search-div {
+    left: 0vw;
+}
+
+.searchbar-container {
+    display: flex;
+    align-items: center;
+    margin-left: 8vw;
+    margin-top: 5vh;
+}
+
+.search-contents {
+    height: 70vh;
+    width: 82vw;
+    margin-left: 8vw;
+    margin-top: 8vh;
+    overflow-y: auto;
+}
+
 @media only screen and (max-width: 480px)  {
     .nav-desktop {
         display: none;
@@ -75,5 +214,53 @@
         justify-content: center;
         padding: 0;
         height: 60px;
+    }
+
+    .nav-bottom {
+        width: 100vw;
+        height: 55px;
+        position:fixed;
+        bottom: 0;
+        background-color: #110f15;
+    }
+
+    .bottom-flex {
+        width:90%;
+        height: 95%;
+        margin-left:5%;
+        margin-top: 1.25%;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-bottom-btn {
+        background: none;
+        border: none;
+        margin-inline: 5px;
+    }
+
+    .nav-bottom-btn img {
+        width: 17px;
+    }
+
+    .nav-bottom-btn p {
+        font-size: 8px;
+        margin-top:0;
+    }
+
+    .nav-bottom-main {
+        border: none;
+        background: none;
+        margin-inline: 10px;
+    }
+
+    .nav-bottom-main img{
+        width: 40px;
+    }
+
+    .nav-btn2 img {
+        width: 18px;
     }
 }

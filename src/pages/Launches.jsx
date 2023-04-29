@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "../App";
 import { GET_LAUNCHES } from "../lib/getLaunches";
 import bg from "../assets/Images/Pages/launches.jpg"
 import LaunchCards from "../components/Cards/LaunchCards";
 import $ from 'jquery'
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import LoadingPage from "../components/LoadingPage";
 
 const Launches = () => {
 
@@ -31,12 +33,12 @@ const Launches = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [compactTheme]);
+    }, [compactTheme, handleScroll]);
 
     return (
         <>
             {
-                (loading) ? <div></div> : ((error) ? (() => navigate('/400badrequest')) :
+                (loading) ? <LoadingPage /> : ((error) ? (() => navigate('/Error/400badrequest')) :
                 
                 (compactTheme) ? (
                     // Compact mode
@@ -50,6 +52,7 @@ const Launches = () => {
                     <div className="fullscreen bg-default no-overflow" style={{height:"1550vh", overflowY: "auto"}}>
                         <LaunchCards data={data} />
                     </div>
+                    <Footer />
                     </>
                 ) : (
                     <LaunchCards data={data} />

@@ -1,7 +1,9 @@
 import { memo, useContext } from "react";
-import Card from "../Card";
-import MiniCard from "../MiniCard";
+import Card from "./Card";
+import MiniCard from "./MiniCard";
 import { ThemeContext } from "../../App";
+import { useNavigate } from "react-router-dom";
+import '../../assets/styles/Page.css';
 
 // Memoization to improve performance
 
@@ -10,6 +12,7 @@ const RocketCards = (data) => {
     let rockets = [];
 
     const compactTheme = useContext(ThemeContext);
+    const navigate = useNavigate();
     data = data.data;
     
 
@@ -22,7 +25,7 @@ const RocketCards = (data) => {
 
     return ( <>
         {
-            rockets.map((rocket) => {
+            rockets.map((rocket, key) => {
                 let title = rocket.name;
                 let content = rocket.company + "'s ";
                 let image = "/assets/Images/Rockets/" + rocket.id + ".jpg"
@@ -34,9 +37,23 @@ const RocketCards = (data) => {
                 <>
                 {
                     (compactTheme) ? (
-                        <MiniCard key={rocket.id} title={title.toUpperCase()} content={content.toUpperCase()} image={image}/>
+                        <MiniCard 
+                            key={key}
+                            id={rocket.id} 
+                            title={title.toUpperCase()} 
+                            content={content.toUpperCase()} 
+                            image={image}
+                            url={`/Rockets/Details/${rocket.id}`}
+                        />
                     ) : (
-                        <Card key={rocket.id} title={title.toUpperCase()} content={content.toUpperCase()} image={image}/>
+                        <Card 
+                            key={key}
+                            id={rocket.id} 
+                            title={title.toUpperCase()} 
+                            content={content.toUpperCase()} 
+                            image={image}
+                            url={`/Rockets/Details/${rocket.id}`}
+                        />
                     )
                 }
                 </> 

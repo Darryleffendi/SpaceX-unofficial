@@ -8,7 +8,7 @@ export const Company = (props) => {
                 <h1 className='font-main'>{props.data.company.name.toUpperCase()}</h1>
                 <h4 className='font-main'>UNOFFICIAL SITE</h4>
 
-                <p className='font-p'>{props.data.company.summary}</p>
+                <p className='font-p fs-xs'>{props.data.company.summary}</p>
             </div>
         </div>
     );

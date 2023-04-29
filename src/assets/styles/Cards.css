@@ -2,6 +2,11 @@
     .card {
         background-position-y: center;
     }
+
+    .search-card {
+        justify-content: space-between;
+        height: 35vh;
+    }
 }
 
 .card {
@@ -27,7 +32,7 @@
 
 .card-inner p {
     margin: 0;
-    font-size: calc(5px + 0.4w);
+    font-size: calc(12px + 0.4vw);
 }
 
 .card-btn {
@@ -39,7 +44,7 @@
     padding-inline: 28px;
     border-radius: 4px;
     font-size: 14px;
-    display: block;
+    display: inline;
     /* Animation on hover */
     background: linear-gradient(45deg, whitesmoke 50%, transparent 50%);
     background-size: 300% 200%;
@@ -65,4 +70,75 @@
     width: 100%;
     height: 60%;
     object-fit: cover;
+}
+
+.hover-btn {
+    width: 25vw;
+    height: 80%;
+    border: none;
+    position: absolute;
+    background-color: #00000000;
+    opacity: 0%;
+    transition: 500ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hover-btn:hover {
+    background-color: #0000009a;
+    opacity: 100%;
+}
+
+/* ======== Rocket Table ========= */
+.overview-div {
+    margin-left: 8vw;
+    margin-top: 5vh;
+    height: 90vh;
+    width: 35vw;
+}
+
+.overview-head {
+    position: relative;
+    margin-left: 8vw;
+    top: 20vh;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.overview-table tr {
+    border-bottom: 1px solid rgb(62, 62, 62);
+}
+
+.overview-table td {
+    height: 7vh;
+    width: 17.5vw;
+}
+
+/* ======== Engine card ======== */
+.engine-div {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ======== Search Card ========= */
+.search-card {
+    width: 100%;
+    height: 30vh;
+    margin-bottom: 5vh;
+    overflow: hidden;
+    direction: ltr;
+}
+.search-card img {
+    width:30%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.search-card-content {
+    width: 55%;
+    margin-left: 5%;
 }

@@ -5,14 +5,7 @@ export const GET_LAUNCHES = gql`
         launches {
             id
             mission_name
-            details
             launch_date_local
-            rocket {
-                rocket {
-                name
-                id
-                }
-            }
             links {
                 flickr_images
             }
